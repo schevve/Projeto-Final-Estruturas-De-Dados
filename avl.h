@@ -41,4 +41,18 @@ void imprimePosOrdem(No *r);
 /* Destruição */
 void destroiArvore(Arvore *A);
 
+/* Funções implementadas */
+
+/**
+ * Imprime a árvore na estrutura hierárquica, com identação proporcional ao nível
+ */
+void imprimeEstruturada(No* r, int nivel);
+
+/**
+ * Retorna quantos nós existem em determinado nível da árvore
+ */
+int contaNivel(No *r, int nivel);
+
+
+
 #endif /* AVL_H */
