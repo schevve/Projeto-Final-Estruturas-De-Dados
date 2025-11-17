@@ -1,6 +1,8 @@
 #include "avl.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <math.h>
 
 static int alt(No *r) { return r ? r->altura : -1; }
 static int max2(int a, int b) { return (a > b ? a : b); }
@@ -239,4 +241,42 @@ void imprimePosOrdem(No *r)
     imprimePosOrdem(r->esq);
     imprimePosOrdem(r->dir);
     printf("%d ", r->chave);
+}
+void imprimeEstruturada(No *r, int nivel){
+    int alturaRaiz = alturaRec(r);
+    int camada = 0;
+
+    for (; camada <= alturaRaiz; camada++){
+        imprimeCamadaComIdentacaoRec(r, camada, 2, alturaRaiz);
+        printf("\n\n");
+    }
+
+}
+void imprimeCamadaComIdentacaoRec(No *r, int camada, int identacao, int altura){
+    if (r == NULL) { // Se uma árvore é vazia, ainda é necessário printar os espaços
+        for (int i = 0; i < (pow(2, altura) * 3) -2; i++) printf(" ");
+        printf("   ");
+        for (int i = 0; i < (pow(2, altura) * 3) - 1; i++) printf(" ");
+        return;
+    }
+    // Chegou na camada que será printada
+    if (camada == 0) {
+        // Printa o espaço anterior
+        for (int i = 0; i < (pow(2, altura) * 3) - 2; i++) printf(" ");
+        // Normalização do tamanho dos valores em 3
+        char espaco[3];
+        if (r->chave > 9) {
+            strcpy(espaco, " \0");
+        } else {
+            strcpy(espaco, "  \0");
+        }
+        // Printa o valor
+        printf("%s%d", espaco, r->chave);
+        // Printa o espaço posterior e retorna
+        for (int i = 0; i < (pow(2, altura) * 3) - 1; i++) printf(" ");
+        return;
+    }
+    // Chama a função recursivamente até chegar na camada que será printada
+    imprimeCamadaComIdentacaoRec(r->esq, camada - 1, identacao, altura - 1);
+    imprimeCamadaComIdentacaoRec(r->dir, camada - 1, identacao, altura - 1);
 }

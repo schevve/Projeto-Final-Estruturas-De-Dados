@@ -47,6 +47,7 @@ void destroiArvore(Arvore *A);
  * Imprime a árvore na estrutura hierárquica, com identação proporcional ao nível
  */
 void imprimeEstruturada(No* r, int nivel);
+void imprimeCamadaComIdentacaoRec(No *r, int camada, int identacao, int altura);
 
 /**
  * Retorna quantos nós existem em determinado nível da árvore

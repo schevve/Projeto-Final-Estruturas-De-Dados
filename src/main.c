@@ -16,11 +16,7 @@ static void mostraMinMax(No *r)
 int main(void)
 {
     Arvore *A = criaArvore();
-    int op, x;
-
-    for (int i = 1; i <= 30; i++) {
-        insere(A, i);
-    }
+    int op, x;    
     do
     {
         printf("\n=== MENU AVL ===\n");
