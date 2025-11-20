@@ -284,3 +284,11 @@ void imprimeCamadaComIdentacaoRec(No *r, int camada, int identacao, int altura){
     imprimeCamadaComIdentacaoRec(r->esq, camada - 1, identacao, altura - 1);
     imprimeCamadaComIdentacaoRec(r->dir, camada - 1, identacao, altura - 1);
 }
+
+int contaNivel(No *r, int nivel){
+    if (r == NULL) return 0; // Se o nó é null, retorna 0
+    nivel--; // Diminui um nível
+    if (nivel == 0) return 1; // Se o nível for 0, retorna 1, indicando que há um nó nesse nível 
+
+    return contaNivel(r->esq, nivel) + contaNivel(r->dir, nivel); // Soma a quantidade de nós no nível solicitado da esquerda e direita
+}
